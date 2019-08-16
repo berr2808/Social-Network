@@ -60,5 +60,5 @@ app.use('/api', noteRoutes)
 app.use('/api', nIntRoutes)
 app.use('/api', editRoutes)
 app.use('/', mRoutes)
-
-app.listen(PORT|| 3000, () => hl.success('App running..'))
+console.log(PORT|| 80)
+app.listen(PORT|| 80, () => hl.success('App running..'))
