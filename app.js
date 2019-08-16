@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({
 app.use(validator())
 app.use(session({
   cookieName: "session",
-  secret: SESSION_SECRET_LETTER,
+  secret: SESSION_SECRET_LETTER || "Draculeo-KK",
   duration: 60 * 60 * 1000,
   activeDuration: 5 * 60 * 1000
 }))
@@ -61,4 +61,4 @@ app.use('/api', nIntRoutes)
 app.use('/api', editRoutes)
 app.use('/', mRoutes)
 
-app.listen(PORT, () => hl.success('App running..'))
+app.listen(PORT|| 3000, () => hl.success('App running..'))

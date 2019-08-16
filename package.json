@@ -38,7 +38,7 @@
     "nodemailer": "^4.0.1",
     "nprogress": "^0.2.0",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
+    "react": "16.8.6",
     "react-content-loader": "^4.2.2",
     "react-custom-scrollbars": "^4.1.2",
     "react-dom": "^15.5.4",

@@ -65,7 +65,7 @@ const signup = (req, res) => {
             .pipe(fs.createWriteStream(dir + `/public/users/${insertId}/user.jpg`))
 
           let
-            url = `${process.env.HOST}/deep/most/topmost/activate/${insertId}`,
+            url = `${process.env.HOST ||"127.0.0.1:"+process.env.PORT}/deep/most/topmost/activate/${insertId}`,
             options = {
               to: email,
               subject: "Active su cuenta de la aplicación (K)-UCA",
