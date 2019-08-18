@@ -1,8 +1,11 @@
 
 
 axios = require('axios')
+appConfig = require('../public/js/src/functions/config')
+
 const
-  { API } = process.env
+  AppConfig = appConfig.AppConfig,
+  API = AppConfig.API
 
 const api = (pController) => {
   let Url = API + pController;
@@ -40,13 +43,13 @@ const api = (pController) => {
     },
     Update: (pId, pData) => {
       return axios.put(Url + "?id=" + pId, pData).then(response => {
-        return { data: 1, isError: false, changedRows: 1,response:response };;
-      }).catch(error => { return { data: 0, isError: true, changedRows: 0 ,response:error } })
+        return { data: 1, isError: false, changedRows: 1, response: response };;
+      }).catch(error => { return { data: 0, isError: true, changedRows: 0, response: error } })
     },
     Delete: (pId) => {
       return axios.delete(Url + "?" + pId).then(response => {
-        return { data: 1, isError: false, affectedRows: 1,response:response };
-      }).catch(error => { return { data: 0, isError: true, affectedRows: 0,response:error  } })
+        return { data: 1, isError: false, affectedRows: 1, response: response };
+      }).catch(error => { return { data: 0, isError: true, affectedRows: 0, response: error } })
     },
     RowAsync: async (pId) => {
       let _response = await CRUD(pController).Row(pId);

@@ -17,3 +17,6 @@ if (element) {
     element
   )
 }
+else{
+  console.log(element)
+}

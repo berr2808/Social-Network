@@ -1,8 +1,6 @@
 axios = require('axios')
 
 const
-  { API } = process.env
-const
   CRUD = require('./api'),
   util = require('util'),
   bcrypt = require('bcrypt-nodejs')

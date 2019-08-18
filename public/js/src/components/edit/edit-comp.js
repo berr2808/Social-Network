@@ -8,6 +8,7 @@ import Notify from 'handy-notification'
 import TimeAgo from 'handy-timeago'
 import P from 'bluebird'
 import * as fn from '../../functions/functions'
+import {AppConfig }from '../../functions/config'
 import * as user_action from '../../actions/user-action'
 import { Link, NavLink } from 'react-router-dom'
 
@@ -63,7 +64,7 @@ export default class Edit extends React.Component {
       { username, email, bio, file } = this.state,
       { id, joined } = this.props.user.user_details
     let usernameTO = $('.data').data('username')
-
+console.log(AppConfig)
     return (
       <div class='edit'>
 
@@ -136,7 +137,7 @@ export default class Edit extends React.Component {
             <a href="#" className="pri_btn e_done" onClick={this.edit_profile} >Editar</a>
           </div>
           <div className="e_joined">
-            <span>{`Te uniste a la aplicación (K)-UCA ${TimeAgo(joined)}`}</span>
+            <span>{`Te uniste a la aplicación ${AppConfig.BRANDNAME} ${TimeAgo(joined)}`}</span>
           </div>
 
           {

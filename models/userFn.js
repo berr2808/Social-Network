@@ -7,8 +7,9 @@ const
   fs = require('fs'),
   { promisify } = require('util'),
   path = require('path'),
-  dir = process.cwd()
-
+  dir = process.cwd(),
+  appConfig = require('../public/js/src/functions/config'),
+  AppConfig = appConfig.AppConfig
 const signup = (req, res) => {
   let {
     body: { username, email, password, password_again },
@@ -65,11 +66,11 @@ const signup = (req, res) => {
             .pipe(fs.createWriteStream(dir + `/public/users/${insertId}/user.jpg`))
 
           let
-            url = `${process.env.HOST ||"127.0.0.1:"+process.env.PORT||"8080"}/deep/most/topmost/activate/${insertId}`,
+            url = `${AppConfig.HOST}/deep/most/topmost/activate/${insertId}`,
             options = {
               to: email,
-              subject: "Active su cuenta de la aplicación (K)-UCA",
-              html: `<span>Hola, Recibiste este mensaje porque creaste una cuenta en la aplicación (K)-UCA.<span><br><span>Haga clic en el botón a continuación para activar su cuenta y explorar.</span><br><br><a href='${url}' style='border: 1px solid #1b9be9; font-weight: 600; color: #fff; border-radius: 3px; cursor: pointer; outline: none; background: #1b9be9; padding: 4px 15px; display: inline-block; text-decoration: none;'>Activate</a>`
+              subject: `"Active su cuenta de la aplicación "${AppConfig.BRANDNAME}`,
+              html: `<span>Hola, Recibiste este mensaje porque creaste una cuenta en la aplicación"${AppConfig.BRANDNAME}"<span><br><span>Haga clic en el botón a continuación para activar su cuenta y explorar.</span><br><br><a href='${url}' style='border: 1px solid #1b9be9; font-weight: 600; color: #fff; border-radius: 3px; cursor: pointer; outline: none; background: #1b9be9; padding: 4px 15px; display: inline-block; text-decoration: none;'>Activate</a>`
             }
 
           mail(options)

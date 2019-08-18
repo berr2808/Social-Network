@@ -12,6 +12,7 @@ const
   validator = require('express-validator'),
   session = require('client-sessions'),
   hl = require('handy-log'),
+
   app = express()
 
 // Requiring project files
@@ -23,7 +24,9 @@ const
   noteRoutes = require('./routes/note_routes'),
   nIntRoutes = require('./routes/note-int-routes'),
   editRoutes = require('./routes/edit-routes'),
-  mw = require('./models/middlewares')
+  mw = require('./models/middlewares'),
+  appConfig = require('./public/js/src/functions/config'),
+  AppConfig = appConfig.AppConfig
 
 // View engine
 app.engine('hbs', hbs({
@@ -43,7 +46,7 @@ app.use(bodyParser.urlencoded({
 app.use(validator())
 app.use(session({
   cookieName: "session",
-  secret: SESSION_SECRET_LETTER || "Draculeo-KK",
+  secret: SESSION_SECRET_LETTER,
   duration: 60 * 60 * 1000,
   activeDuration: 5 * 60 * 1000
 }))
@@ -60,5 +63,4 @@ app.use('/api', noteRoutes)
 app.use('/api', nIntRoutes)
 app.use('/api', editRoutes)
 app.use('/', mRoutes)
-console.log(PORT|| 80)
-app.listen(PORT|| 80, () => hl.success('App running..'))
+app.listen(AppConfig.PORT, () => hl.success('App running..'))

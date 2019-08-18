@@ -1,17 +1,19 @@
 const nodemailer = require('nodemailer')
+appConfig = require('../public/js/src/functions/config'),
+AppConfig = appConfig.AppConfig
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.MAIL || "byronrochaxxx@gmail.com",
-    pass: process.env.MAIL_PASSWORD || 'Managua1997'
+    user: AppConfig.MAIL,
+    pass: AppConfig.MAIL_PASSWORD
   }
 })
 
 let mail = options => {
   return new Promise((resolve, reject) => {
     let o = Object.assign({}, {
-      from: `"(K)-UCA app" <${process.env.MAIL}>`
+      from: `${AppConfig.BRANDNAME}"app" <${AppConfig.MAIL}>`
     }, options)
     transporter.sendMail(o, (err, res) => err ? reject(err) : resolve('Mail sent!!'))
   })

@@ -9,8 +9,9 @@ const
   }),
   fs = require('fs'),
   { promisify } = require('util'),
-  { ProcessImage, DeleteAllOfFolder } = require('handy-image-processor')
-
+  { ProcessImage, DeleteAllOfFolder } = require('handy-image-processor'),
+  appConfig = require('../public/js/src/functions/config'),
+  AppConfig = appConfig.AppConfig
 // FOR GETTING THE COUNT OF GIVEN FIELD
 app.post('/what-exists', (req, res) => {
   P.coroutine(function* () {
@@ -144,11 +145,11 @@ app.post('/resend_vl', (req, res) => {
       { id } = req.session
     let userRow = yield db.getRowId(id),
       email = userRow.data.email
-    url = `${process.env.HOST}/deep/most/topmost/activate/${id}`,
+    url = `${AppConfig.HOST}/deep/most/topmost/activate/${id}`,
       options = {
         to: email,
-        subject: " Active su cuenta de la aplicación (K)-UCA",
-        html: `<span>(K)-UCA.<span><br><span>Haga clic en el botón a continuación para activar su cuenta y explorar.</span><br><br><a href='${url}' style='border: 1px solid #1b9be9; font-weight: 600; color: #fff; border-radius: 3px; cursor: pointer; outline: none; background: #1b9be9; padding: 4px 15px; display: inline-block; text-decoration: none;'>Activar</a>`
+        subject:` " Active su cuenta de la aplicación ${AppConfig.BRANDNAME}"`,
+        html: `<span>${AppConfig.BRANDNAME}.<span><br><span>Haga clic en el botón a continuación para activar su cuenta y explorar.</span><br><br><a href='${url}' style='border: 1px solid #1b9be9; font-weight: 600; color: #fff; border-radius: 3px; cursor: pointer; outline: none; background: #1b9be9; padding: 4px 15px; display: inline-block; text-decoration: none;'>Activar</a>`
       }
     yield mail(options)
     res.json({ mssg: "Enlace de verificación enviado a su correo electrónico!" })
