@@ -1,6 +1,6 @@
 const AppConfig = {
   BRANDNAME: process.env.BRANDNAME || '(K)-UCA',
-  PORT:process.env.PORT ||3000,
+  PORT:process.env.PORT ||8080,
   HOST: process.env.HOST || "https://localhost:3000",
   API: process.env.API || "https://main20190810065704.azurewebsites.net/api/",
   MAIL: process.env.MAIL_PASSWORD || "correo@correo.com",

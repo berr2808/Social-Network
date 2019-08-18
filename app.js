@@ -46,7 +46,7 @@ app.use(bodyParser.urlencoded({
 app.use(validator())
 app.use(session({
   cookieName: "session",
-  secret: SESSION_SECRET_LETTER,
+  secret: AppConfig.SESSION_SECRET_LETTER,
   duration: 60 * 60 * 1000,
   activeDuration: 5 * 60 * 1000
 }))
