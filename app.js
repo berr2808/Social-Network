@@ -3,7 +3,6 @@ require('dotenv').config()
 // Installed packages
 const
   express = require('express'),
-  { env: { PORT, SESSION_SECRET_LETTER } } = process,
   hbs = require('express-handlebars'),
   path = require('path'),
   logger = require('morgan'),
